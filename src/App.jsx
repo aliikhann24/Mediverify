@@ -184,6 +184,10 @@ const S = `
 
   /* MODE */
   .mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+  /* inline content slots hidden on desktop */
+  .mode-inline-content{display:none}
+  /* desktop content shown normally */
+  .mode-desktop-content{}
   .mode-card{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:20px 16px;cursor:pointer;transition:all 0.25s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:9px;position:relative;overflow:hidden}
   .mode-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(56,189,248,0.04),transparent);opacity:0;transition:opacity 0.25s}
   .mode-card:hover{border-color:var(--border2);transform:translateY(-2px)}
@@ -470,7 +474,10 @@ const S = `
     .tech-grid{grid-template-columns:1fr 1fr}
     .container,.container-lg,.result-wrap{padding:100px 18px 60px}
     .about-hero{padding:105px 18px 60px}
-    .mode-grid,.det-grid,.res-btns,.inp-row{grid-template-columns:1fr}
+    .mode-grid{grid-template-columns:1fr!important;display:flex!important;flex-direction:column}
+    .mode-inline-content{display:block}
+    .mode-desktop-content{display:none}
+    .det-grid,.res-btns,.inp-row{grid-template-columns:1fr}
     .stats-row{grid-template-columns:1fr 1fr}
     .cta-band{margin:0 18px 60px;padding:32px 22px}
     .h-item{flex-wrap:wrap}
@@ -892,22 +899,33 @@ function VerifyPage({ navigate, toast }) {
           ))}
         </div>
 
+        {/* Desktop: side by side grid. Mobile: stacked with content in between */}
         <div className="mode-grid">
-          {[
-            {k:"image",icon:<Ic.Camera/>,t:"Upload Image",d:"Photo of back label — AI reads it automatically"},
-            {k:"code", icon:<Ic.Code/>, t:"Enter Code",  d:"Type the batch or registration code"},
-          ].map(({k,icon,t,d}) => (
-            <div key={k} className={`mode-card ${mode===k?"sel":""}`} onClick={()=>{setMode(k);setError("");}}>
-              <div className="mode-chk"><Ic.Check/></div>
-              <div className="mode-icon">{icon}</div>
-              <div className="mode-title">{t}</div>
-              <div className="mode-desc">{d}</div>
-            </div>
-          ))}
+          <div className={`mode-card ${mode==="image"?"sel":""}`} onClick={()=>{setMode("image");setError("");}}>
+            <div className="mode-chk"><Ic.Check/></div>
+            <div className="mode-icon"><Ic.Camera/></div>
+            <div className="mode-title">Upload Image</div>
+            <div className="mode-desc">Photo of back label — AI reads it automatically</div>
+          </div>
+          <div className="mode-inline-content mode-inline-image">
+            {mode==="image" && <ImageUpload onImageReady={(d,f)=>{setImgData(d);setImgFile(f);}}/>}
+          </div>
+          <div className={`mode-card ${mode==="code"?"sel":""}`} onClick={()=>{setMode("code");setError("");}}>
+            <div className="mode-chk"><Ic.Check/></div>
+            <div className="mode-icon"><Ic.Code/></div>
+            <div className="mode-title">Enter Code</div>
+            <div className="mode-desc">Type the batch or registration code</div>
+          </div>
+          <div className="mode-inline-content mode-inline-code">
+            {mode==="code" && <CodeEntry onCodeReady={d=>setCodeData(d)}/>}
+          </div>
         </div>
 
-        {mode==="image" && <ImageUpload onImageReady={(d,f)=>{setImgData(d);setImgFile(f);}}/>}
-        {mode==="code"  && <CodeEntry  onCodeReady={d=>setCodeData(d)}/>}
+        {/* Desktop only: show content outside grid */}
+        <div className="mode-desktop-content">
+          {mode==="image" && <ImageUpload onImageReady={(d,f)=>{setImgData(d);setImgFile(f);}}/>}
+          {mode==="code"  && <CodeEntry  onCodeReady={d=>setCodeData(d)}/>}
+        </div>
 
         {error && <ErrorBanner error={error} onRetry={retry} onDismiss={()=>setError("")}/>}
 
