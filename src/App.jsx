@@ -51,6 +51,8 @@ function deleteEntry(id) { localStorage.setItem(HK, JSON.stringify(getHistory().
 const API_KEY = import.meta.env.VITE_CLAUDE_API_KEY;
 
 async function analyzeImage(base64, mime = "image/jpeg") {
+  base64 = await compressImage(base64, 1024);
+  mime = "image/jpeg";
   const prompt = `You are a medicine verification expert. Analyze this medicine packaging image.
 Determine: LEGIT (registered, not expired, authentic), FAKE (counterfeit/unregistered), or EXPIRED (genuine but past date).
 Respond ONLY with valid JSON, no extra text:
@@ -507,10 +509,40 @@ const S = `
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
 function validateFile(f) {
   if (!["image/jpeg","image/png","image/webp"].includes(f.type)) return "Only JPG, PNG, or WEBP images are allowed.";
-  if (f.size > 10*1024*1024) return "File must be under 10MB.";
+  if (f.size > 20*1024*1024) return "File must be under 20MB.";
   return null;
 }
 function fmtSize(b) { return b < 1024*1024 ? (b/1024).toFixed(1)+" KB" : (b/(1024*1024)).toFixed(1)+" MB"; }
+
+// Compress image to max 1MB before sending to Claude AI
+function compressImage(base64, maxSizeKB = 1024) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      let { width, height } = img;
+      // Scale down if too large
+      const maxDim = 1200;
+      if (width > maxDim || height > maxDim) {
+        if (width > height) { height = Math.round(height * maxDim / width); width = maxDim; }
+        else { width = Math.round(width * maxDim / height); height = maxDim; }
+      }
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, width, height);
+      // Try quality 0.8 first, then reduce if still too big
+      let quality = 0.8;
+      let result = canvas.toDataURL("image/jpeg", quality);
+      while (result.length > maxSizeKB * 1024 * 1.37 && quality > 0.2) {
+        quality -= 0.1;
+        result = canvas.toDataURL("image/jpeg", quality);
+      }
+      resolve(result);
+    };
+    img.src = base64;
+  });
+}
 
 // ─── TOAST SYSTEM ─────────────────────────────────────────────────────────────
 function useToast() {
