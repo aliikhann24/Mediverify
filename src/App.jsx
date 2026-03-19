@@ -1049,7 +1049,7 @@ function AboutPage({ navigate }) {
         <h2 className="sec-title">Technology Stack</h2>
         <p className="sec-desc">Modern technologies powering MediVerify.</p>
         <div className="tech-grid">
-          {[{e:"⚛️",n:"React 18",r:"Frontend UI"},{e:"⚡",n:"Vite",r:"Build Tool"},{e:"🤖",n:"Claude AI",r:"AI Engine"},{e:"👁️",n:"Claude Vision",r:"Image OCR"},{e:"💾",n:"localStorage",r:"History"},{e:"🎨",n:"CSS Variables",r:"Design System"},{e:"📦",n:"Zero Deps",r:"Vanilla JS"},{e:"🚀",n:"Netlify",r:"Deployment"}].map(({e,n,r})=>(
+          {[{e:"⚛️",n:"React 18",r:"Frontend UI"},{e:"⚡",n:"Vite",r:"Build Tool"},{e:"🤖",n:"Claude AI",r:"AI Engine"},{e:"👁️",n:"Claude Vision",r:"Image OCR"},{e:"💾",n:"localStorage",r:"History"},{e:"🎨",n:"CSS Variables",r:"Design System"},{e:"📦",n:"Zero Deps",r:"Vanilla JS"},{e:"🚀",n:"Vercel",r:"Deployment"}].map(({e,n,r})=>(
             <div key={n} className="tech-card"><div className="tech-e">{e}</div><div className="tech-n">{n}</div><div className="tech-r">{r}</div></div>
           ))}
         </div>
