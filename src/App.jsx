@@ -996,9 +996,8 @@ function AboutPage({ navigate }) {
   return (
     <div className="about-wrap">
       <div className="about-hero">
-        <div className="a-eye">Final Year Project — Medicine Verification</div>
         <h1 className="a-title">Protecting Lives with <span>AI Intelligence</span></h1>
-        <p className="a-desc">MediVerify uses Claude AI's vision capabilities to instantly analyze medicine packaging, detect counterfeit drugs, and flag expired medications — making healthcare safer for everyone.</p>
+        <p className="a-desc">MediVerify uses Claude AI's vision capabilities to instantly analyze medicine packaging, detect counterfeit drugs, and flag expired medications making healthcare safer for everyone.</p>
         <div style={{display:"flex",justifyContent:"center",gap:11,flexWrap:"wrap"}}>
           <button className="btn btn-p" onClick={()=>navigate("verify")}>Try It Now <Ic.ArrowR/></button>
           <button className="btn btn-o" onClick={()=>navigate("history")}>View History</button>
@@ -1010,7 +1009,7 @@ function AboutPage({ navigate }) {
         <h2 className="sec-title">How MediVerify Works</h2>
         <p className="sec-desc">Four steps from medicine photo to verified result in under 10 seconds.</p>
         <div className="steps-vis">
-          {[{n:1,c:"sc1",t:"Upload or Enter",d:"Upload a photo of the label or enter the batch/registration code manually"},{n:2,c:"sc2",t:"AI Reads Label",d:"Claude AI vision reads all text including batch numbers, dates, and registration codes"},{n:3,c:"sc3",t:"Cross-Analysis",d:"AI checks code formats, manufacturer details, and packaging consistency patterns"},{n:4,c:"sc4",t:"Instant Verdict",d:"Get a clear Legit, Fake, or Expired result with detailed breakdown"}].map(({n,c,t,d})=>(
+          {[{n:1,c:"sc1",t:"Upload or Enter",d:"Upload/Scan a photo of the label or enter the batch/registration code manually"},{n:2,c:"sc2",t:"AI Reads Label",d:"Claude AI vision reads all text including batch numbers, dates, and registration codes"},{n:3,c:"sc3",t:"Cross-Analysis",d:"AI checks code formats, manufacturer details, and packaging consistency patterns"},{n:4,c:"sc4",t:"Instant Verdict",d:"Get a clear Legit, Fake, or Expired result with detailed breakdown"}].map(({n,c,t,d})=>(
             <div key={n} className="step-blk"><div className={`step-circ ${c}`}>{n}</div><div className="step-blk-t">{t}</div><div className="step-blk-d">{d}</div></div>
           ))}
         </div>
@@ -1046,7 +1045,7 @@ function AboutPage({ navigate }) {
         <h2 className="sec-title">Technology Stack</h2>
         <p className="sec-desc">Modern technologies powering MediVerify.</p>
         <div className="tech-grid">
-          {[{e:"⚛️",n:"React 18",r:"Frontend UI"},{e:"⚡",n:"Vite",r:"Build Tool"},{e:"🤖",n:"Claude AI",r:"AI Engine"},{e:"👁️",n:"Claude Vision",r:"Image OCR"},{e:"💾",n:"localStorage",r:"History"},{e:"🎨",n:"CSS Variables",r:"Design System"},{e:"📦",n:"Zero Deps",r:"Vanilla JS"},{e:"🚀",n:"Netlify",r:"Deployment"}].map(({e,n,r})=>(
+          {[{e:"⚛️",n:"React 18",r:"Frontend UI"},{e:"⚡",n:"Vite",r:"Build Tool"},{e:"🤖",n:"Claude AI",r:"AI Engine"},{e:"👁️",n:"Claude Vision",r:"Image OCR"},{e:"💾",n:"localStorage",r:"History"},{e:"🎨",n:"CSS Variables",r:"Design System"},{e:"📦",n:"Zero Deps",r:"Vanilla JS"},{e:"🚀",n:"Vercel",r:"Deployment"}].map(({e,n,r})=>(
             <div key={n} className="tech-card"><div className="tech-e">{e}</div><div className="tech-n">{n}</div><div className="tech-r">{r}</div></div>
           ))}
         </div>
@@ -1054,7 +1053,7 @@ function AboutPage({ navigate }) {
 
       <div className="cta-band">
         <h2>Ready to verify your medicine?</h2>
-        <p>Upload a photo or enter a code — get your AI verdict in seconds.</p>
+        <p>Upload/Scan a photo or enter a code get your AI verdict in seconds.</p>
         <div style={{display:"flex",justifyContent:"center",gap:11,flexWrap:"wrap"}}>
           <button className="btn btn-p" onClick={()=>navigate("verify")}>Start Verifying <Ic.ArrowR/></button>
           <button className="btn btn-o" onClick={()=>navigate("history")}>View History</button>
