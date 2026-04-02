@@ -1068,7 +1068,7 @@ function HomePage({ navigate }) {
       <div className="home-hero">
         <div>
           <div className="h-eye">AI-Powered Medicine Verification</div>
-          <h1 className="h-title">Is Your Medicine <span className="hi">Legit</span>,<span className="wc">Fake?</span>or<span>Expired</span></h1>
+          <h1 className="h-title">Is Your Medicine <span className="hi">Legit</span>,<span className="wc"> Fake</span>or<span> Expired?</span></h1>
           <p className="h-desc">Upload a photo of the medicine packaging or enter its code. Our AI instantly checks authenticity, expiry date, and registration status.</p>
           <div className="h-ctas">
             <button className="btn btn-p" onClick={()=>navigate("verify")}>Verify Medicine <Ic.ArrowR/></button>
