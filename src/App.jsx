@@ -4,12 +4,10 @@ import { useState, useRef, useCallback, useEffect } from "react";
 function useRoute() {
   const [page, setPage] = useState("home");
   const [params, setParams] = useState({});
-
   const navigate = (p, data = {}) => {
     setPage(p); setParams(data); window.scrollTo(0, 0);
     window.history.pushState({ page: p, data }, "", "#" + p);
   };
-
   useEffect(() => {
     const handler = (e) => {
       if (e.state?.page) { setPage(e.state.page); setParams(e.state.data || {}); window.scrollTo(0, 0); }
@@ -19,7 +17,6 @@ function useRoute() {
     window.history.replaceState({ page: "home", data: {} }, "", "#home");
     return () => window.removeEventListener("popstate", handler);
   }, []);
-
   return { page, params, navigate };
 }
 
@@ -76,7 +73,6 @@ const Ic = {
   Camera:  ({s=26}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{width:s,height:s}}><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>,
   Code:    ({s=26}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{width:s,height:s}}><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9l-3 3 3 3M15 9l3 3-3 3M13 7l-2 10" strokeLinecap="round"/></svg>,
   Upload:  () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{width:36,height:36}}><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>,
-  Scan:    () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{width:22,height:22}}><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>,
   Trash:   ({s=16}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{width:s,height:s}}><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>,
   ArrowR:  () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{width:16,height:16}}><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/></svg>,
   ArrowL:  () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{width:16,height:16}}><path d="M19 12H5M12 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round"/></svg>,
@@ -212,19 +208,6 @@ const S = `
   .mode-desc{font-size:0.74rem;color:var(--muted);font-weight:300;line-height:1.5}
   .mode-chk{position:absolute;top:9px;right:9px;width:19px;height:19px;border-radius:50%;background:var(--accent);color:var(--bg);display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(0.3);transition:all 0.2s}
   .mode-card.sel .mode-chk{opacity:1;transform:scale(1)}
-
-  /* SCAN BUTTONS */
-  .scan-btns-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
-  .scan-btn-card{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:28px 16px;cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;transition:all 0.25s}
-  .scan-btn-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(56,189,248,0.12)}
-  .scan-btn-card:active{transform:scale(0.97)}
-  .upload-card:hover{border-color:var(--a2)}
-  .scan-btn-icon{width:64px;height:64px;border-radius:17px;background:rgba(56,189,248,0.1);color:var(--accent);display:flex;align-items:center;justify-content:center;transition:all 0.25s}
-  .scan-upload-icon{background:rgba(129,140,248,0.1);color:var(--a2)}
-  .scan-btn-card:hover .scan-btn-icon{background:rgba(56,189,248,0.18);transform:translateY(-2px)}
-  .upload-card:hover .scan-upload-icon{background:rgba(129,140,248,0.18)}
-  .scan-btn-title{font-family:var(--fd);font-weight:700;font-size:1rem}
-  .scan-btn-desc{font-size:0.76rem;color:var(--muted);font-weight:300}
 
   /* UPLOAD */
   .upload-zone{border:2px dashed var(--border);border-radius:var(--rl);padding:44px 26px;text-align:center;transition:all 0.25s;cursor:pointer;background:var(--surface);margin-bottom:18px;position:relative;overflow:hidden}
@@ -463,6 +446,7 @@ const S = `
   .h-title{font-family:var(--fd);font-size:clamp(2.3rem,4vw,3.5rem);font-weight:800;line-height:1.06;letter-spacing:-0.03em;margin-bottom:16px}
   .h-title .hi{color:var(--accent)}
   .h-title .wc{color:var(--warn)}
+  .h-title .ex{color:var(--danger)}
   .h-desc{font-size:0.97rem;line-height:1.72;color:var(--muted);margin-bottom:28px;font-weight:300}
   .h-ctas{display:flex;gap:11px;flex-wrap:wrap}
   .med-demo{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:24px;position:relative;overflow:hidden;transition:border-color 0.3s}
@@ -509,7 +493,7 @@ const S = `
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
 function validateFile(f) {
   if (!["image/jpeg","image/png","image/webp"].includes(f.type)) return "Only JPG, PNG, or WEBP images are allowed.";
-  if (f.size > 10*1024*1024) return "File must be under 10MB.";
+  if (f.size > 20*1024*1024) return "File must be under 20MB.";
   return null;
 }
 function fmtSize(b) { return b < 1024*1024 ? (b/1024).toFixed(1)+" KB" : (b/(1024*1024)).toFixed(1)+" MB"; }
@@ -661,6 +645,7 @@ function ImageUpload({ onImageReady }) {
   const camRef = useRef();
 
   const handle = (f) => {
+    if (!f) return;
     const e = validateFile(f);
     if (e) { setErr(e); return; }
     setErr(""); setFname(f.name); setFsize(fmtSize(f.size));
@@ -691,23 +676,14 @@ function ImageUpload({ onImageReady }) {
               <div className="scan-btn-desc">Choose from gallery</div>
             </div>
           </div>
-          <div className={`upload-zone ${drag?"drag":""}`} onDrop={onDrop} onDragOver={e=>{e.preventDefault();setDrag(true);}} onDragLeave={()=>setDrag(false)} onClick={()=>ref.current?.click()} style={{padding:"20px 26px"}}>
+          <div className={`upload-zone ${drag?"drag":""}`} onDrop={onDrop} onDragOver={e=>{e.preventDefault();setDrag(true);}} onDragLeave={()=>setDrag(false)} onClick={()=>ref.current?.click()} style={{padding:"18px 26px"}}>
             <div className="upload-sub" style={{marginBottom:0}}>or <span className="upload-link">drag & drop here</span></div>
             <div className="upload-tags" style={{marginTop:8}}>{["JPG, PNG, WEBP","Max 20MB"].map(t=><div key={t} className="upload-tag">✓ {t}</div>)}</div>
           </div>
           <input ref={camRef} type="file" accept="image/*" capture="environment" style={{display:"none"}} onChange={e => e.target.files[0] && handle(e.target.files[0])}/>
           <input ref={ref} type="file" accept="image/jpeg,image/png,image/webp" style={{display:"none"}} onChange={e => e.target.files[0] && handle(e.target.files[0])}/>
-          <input ref={camRef} type="file" accept="image/jpeg,image/png,image/webp" capture="environment" style={{display:"none"}} onChange={e => e.target.files[0] && handle(e.target.files[0])}/>
-          <button
-            onClick={()=>camRef.current?.click()}
-            style={{width:"100%",marginTop:10,padding:"12px",background:"var(--s2)",border:"1.5px solid var(--border)",borderRadius:"var(--r)",color:"var(--accent)",fontFamily:"var(--fd)",fontWeight:700,fontSize:"0.88rem",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:8,transition:"all 0.2s"}}
-            onMouseOver={e=>{e.currentTarget.style.borderColor="var(--accent)";e.currentTarget.style.background="rgba(56,189,248,0.07)"}}
-            onMouseOut={e=>{e.currentTarget.style.borderColor="var(--border)";e.currentTarget.style.background="var(--s2)"}}
-          >
-            <Ic.Scan/> Open Camera to Scan
-          </button>
           {err && <div className="err-inline">⚠ {err}</div>}
-          <div className="tips"><div className="tips-t">📸 Tips for best results</div><ul className="tips-l"><li>Use "Open Camera to Scan" to take a photo directly</li><li>Make sure batch number and expiry date are fully visible</li><li>Include the full label, avoid cropping important details</li></ul></div>
+          <div className="tips"><div className="tips-t">📸 Tips for best results</div><ul className="tips-l"><li>Use Scan Now to take a photo directly with your camera</li><li>Make sure batch number and expiry date are fully visible</li><li>Include the full label, avoid cropping important details</li></ul></div>
         </>
       ) : (
         <div className="prev-box fi">
@@ -763,7 +739,7 @@ function ResultPage({ result, navigate, toast }) {
       <button onClick={() => navigate("verify")} style={{display:"flex",alignItems:"center",gap:5,background:"none",border:"none",color:"var(--muted)",cursor:"pointer",fontFamily:"var(--fb)",fontSize:"0.8rem",marginBottom:22,padding:0,transition:"color 0.2s"}} onMouseOver={e=>e.currentTarget.style.color="var(--text)"} onMouseOut={e=>e.currentTarget.style.color="var(--muted)"}>
         <Ic.ArrowL/> Back to Verify
       </button>
-      <div className="ai-tag">🤖 AI Analysis Complete</div>
+      <div className="ai-tag">🤖 Analyzed by Claude AI</div>
       <div className={`v-hero ${v}`}>
         <div className="v-glow"/>
         <div className="v-ring">{cfg.icon}</div>
@@ -819,7 +795,7 @@ function ResultPage({ result, navigate, toast }) {
         <button className="rbtn s" onClick={() => navigate("about")}><Ic.Brain/> How It Works</button>
       </div>
 
-      <div className="disclaimer"><strong>Disclaimer:</strong> This result is generated by AI for informational purposes only. Always consult a licensed pharmacist or healthcare provider before making decisions about medication.</div>
+      <div className="disclaimer"><strong>Disclaimer:</strong> This result is generated by Claude AI for informational purposes only. Always consult a licensed pharmacist or healthcare provider before making decisions about medication.</div>
     </div>
   );
 }
@@ -947,17 +923,18 @@ function VerifyPage({ navigate, toast }) {
         </div>
 
         <div className="mode-grid">
-          {[
-            {k:"image",icon:<Ic.Camera/>,t:"Upload Image",d:"Photo of back label — AI reads it automatically"},
-            {k:"code", icon:<Ic.Code/>, t:"Enter Code",  d:"Type the batch or registration code"},
-          ].map(({k,icon,t,d}) => (
-            <div key={k} className={`mode-card ${mode===k?"sel":""}`} onClick={()=>{setMode(k);setError("");}}>
-              <div className="mode-chk"><Ic.Check/></div>
-              <div className="mode-icon">{icon}</div>
-              <div className="mode-title">{t}</div>
-              <div className="mode-desc">{d}</div>
-            </div>
-          ))}
+          <div className={`mode-card ${mode==="image"?"sel":""}`} onClick={()=>{setMode("image");setError("");}}>
+            <div className="mode-chk"><Ic.Check/></div>
+            <div className="mode-icon"><Ic.Camera/></div>
+            <div className="mode-title">Upload Image</div>
+            <div className="mode-desc">Photo of back label — AI reads it automatically</div>
+          </div>
+          <div className={`mode-card ${mode==="code"?"sel":""}`} onClick={()=>{setMode("code");setError("");}}>
+            <div className="mode-chk"><Ic.Check/></div>
+            <div className="mode-icon"><Ic.Code/></div>
+            <div className="mode-title">Enter Code</div>
+            <div className="mode-desc">Type the batch or registration code</div>
+          </div>
         </div>
 
         {mode==="image" && <ImageUpload onImageReady={(d,f)=>{setImgData(d);setImgFile(f);}}/>}
@@ -968,9 +945,9 @@ function VerifyPage({ navigate, toast }) {
         {mode && (
           <div style={{marginTop:8}}>
             <button className="btn btn-p btn-p-full" disabled={!ready||loading} onClick={submit}>
-              {loading ? "Analyzing..." : ready ? <>Analyze Medicine <Ic.ArrowR/></> : "Complete the form above to continue"}
+              {loading ? "Analyzing..." : ready ? <>Analyze with Claude AI <Ic.ArrowR/></> : "Complete the form above to continue"}
             </button>
-            {ready && !loading && <div className="btn-hint">🤖 AI-Powered · Results in ~10 seconds</div>}
+            {ready && !loading && <div className="btn-hint">🤖 Powered by Claude AI · Results in ~10 seconds</div>}
           </div>
         )}
       </div>
@@ -993,9 +970,9 @@ function AboutPage({ navigate }) {
   return (
     <div className="about-wrap">
       <div className="about-hero">
-        <div className="a-eye">Final Year Project Medicine Verification</div>
+        <div className="a-eye">Final Year Project — Medicine Verification</div>
         <h1 className="a-title">Protecting Lives with <span>AI Intelligence</span></h1>
-        <p className="a-desc">MediVerify uses advanced AI vision technology to instantly analyze medicine packaging, detect counterfeit drugs, and flag expired medications making healthcare safer for everyone.</p>
+        <p className="a-desc">MediVerify uses Claude AI's vision capabilities to instantly analyze medicine packaging, detect counterfeit drugs, and flag expired medications — making healthcare safer for everyone.</p>
         <div style={{display:"flex",justifyContent:"center",gap:11,flexWrap:"wrap"}}>
           <button className="btn btn-p" onClick={()=>navigate("verify")}>Try It Now <Ic.ArrowR/></button>
           <button className="btn btn-o" onClick={()=>navigate("history")}>View History</button>
@@ -1007,7 +984,7 @@ function AboutPage({ navigate }) {
         <h2 className="sec-title">How MediVerify Works</h2>
         <p className="sec-desc">Four steps from medicine photo to verified result in under 10 seconds.</p>
         <div className="steps-vis">
-          {[{n:1,c:"sc1",t:"Upload or Enter",d:"Upload/Scan a photo of the label or enter the batch/registration code manually"},{n:2,c:"sc2",t:"AI Reads Label",d:"AI vision reads all text including batch numbers, dates, and registration codes"},{n:3,c:"sc3",t:"Cross-Analysis",d:"AI checks code formats, manufacturer details, and packaging consistency patterns"},{n:4,c:"sc4",t:"Instant Verdict",d:"Get a clear Legit, Fake, or Expired result with detailed breakdown"}].map(({n,c,t,d})=>(
+          {[{n:1,c:"sc1",t:"Upload or Enter",d:"Upload a photo of the label or enter the batch/registration code manually"},{n:2,c:"sc2",t:"AI Reads Label",d:"Claude AI vision reads all text including batch numbers, dates, and registration codes"},{n:3,c:"sc3",t:"Cross-Analysis",d:"AI checks code formats, manufacturer details, and packaging consistency patterns"},{n:4,c:"sc4",t:"Instant Verdict",d:"Get a clear Legit, Fake, or Expired result with detailed breakdown"}].map(({n,c,t,d})=>(
             <div key={n} className="step-blk"><div className={`step-circ ${c}`}>{n}</div><div className="step-blk-t">{t}</div><div className="step-blk-d">{d}</div></div>
           ))}
         </div>
@@ -1029,10 +1006,10 @@ function AboutPage({ navigate }) {
         <h2 className="sec-title">Frequently Asked Questions</h2>
         <p className="sec-desc">Everything you need to know about MediVerify.</p>
         {[
-          {q:"Is this connected to DRAP's official database?",a:"Not directly. MediVerify uses advanced AI to analyze packaging details and code formats based on known patterns. For a production system, integration with DRAP's official API would provide fully verified database results."},
+          {q:"Is this connected to DRAP's official database?",a:"Not directly. MediVerify uses Claude AI to analyze packaging details and code formats based on known patterns. For a production system, integration with DRAP's official API would provide fully verified database results."},
           {q:"How accurate is the AI analysis?",a:"The AI is very accurate at reading text from images and identifying code formats. However, as it's not connected to a live database, results should be used as a helpful indicator. Always consult a pharmacist for critical decisions."},
           {q:"What images should I upload?",a:"Upload the back of the medicine box showing batch number, expiry date, registration number, and manufacturer name. Good lighting, no blur, and the full label visible gives the best results."},
-          {q:"Is my data stored anywhere?",a:"Scan history is stored only in your browser's localStorage. No data is sent to external servers except for the AI analysis service. Your images are not stored after analysis."},
+          {q:"Is my data stored anywhere?",a:"Scan history is stored only in your browser's localStorage. No data is sent to external servers except the Claude AI API for analysis. Your images are not stored after analysis."},
           {q:"What does each verdict mean?",a:"LEGIT means the medicine appears genuine, registered, and within expiry. FAKE means it shows signs of being counterfeit or unregistered. EXPIRED means it's genuine but past its use-by date."},
           {q:"Can I use this for medicines from any country?",a:"Yes! While examples use Pakistani DRAP codes, the AI can analyze medicine packaging from any country and identify the relevant registration authorities and code formats."},
         ].map((f,i) => <FAQ key={i} {...f}/>)}
@@ -1043,7 +1020,7 @@ function AboutPage({ navigate }) {
         <h2 className="sec-title">Technology Stack</h2>
         <p className="sec-desc">Modern technologies powering MediVerify.</p>
         <div className="tech-grid">
-          {[{e:"⚛️",n:"React 18",r:"Frontend UI"},{e:"⚡",n:"Vite",r:"Build Tool"},{e:"🤖",n:"AI Engine",r:"Analysis"},{e:"👁️",n:"Vision AI",r:"Image OCR"},{e:"💾",n:"localStorage",r:"History"},{e:"🎨",n:"CSS Variables",r:"Design System"},{e:"📦",n:"Zero Deps",r:"Vanilla JS"},{e:"🚀",n:"Vercel",r:"Deployment"}].map(({e,n,r})=>(
+          {[{e:"⚛️",n:"React 18",r:"Frontend UI"},{e:"⚡",n:"Vite",r:"Build Tool"},{e:"🤖",n:"Claude AI",r:"AI Engine"},{e:"👁️",n:"Claude Vision",r:"Image OCR"},{e:"💾",n:"localStorage",r:"History"},{e:"🎨",n:"CSS Variables",r:"Design System"},{e:"📦",n:"Zero Deps",r:"Vanilla JS"},{e:"🚀",n:"Netlify",r:"Deployment"}].map(({e,n,r})=>(
             <div key={n} className="tech-card"><div className="tech-e">{e}</div><div className="tech-n">{n}</div><div className="tech-r">{r}</div></div>
           ))}
         </div>
@@ -1051,7 +1028,7 @@ function AboutPage({ navigate }) {
 
       <div className="cta-band">
         <h2>Ready to verify your medicine?</h2>
-        <p>Upload/Scan a photo or enter a code get your AI verdict in seconds.</p>
+        <p>Upload a photo or enter a code — get your AI verdict in seconds.</p>
         <div style={{display:"flex",justifyContent:"center",gap:11,flexWrap:"wrap"}}>
           <button className="btn btn-p" onClick={()=>navigate("verify")}>Start Verifying <Ic.ArrowR/></button>
           <button className="btn btn-o" onClick={()=>navigate("history")}>View History</button>
@@ -1068,8 +1045,8 @@ function HomePage({ navigate }) {
       <div className="home-hero">
         <div>
           <div className="h-eye">AI-Powered Medicine Verification</div>
-          <h1 className="h-title">Is Your Medicine <span className="hi">Legit</span>,<span className="wc"> Fake</span> or<span> Expired?</span></h1>
-          <p className="h-desc">Upload a photo of the medicine packaging or enter its code. Our AI instantly checks authenticity, expiry date, and registration status.</p>
+          <h1 className="h-title">Is Your Medicine <span className="hi">Legit</span>, <span className="wc">Fake</span> or <span className="ex">Expired?</span></h1>
+          <p className="h-desc">Upload a photo of the medicine packaging or enter its code. Claude AI instantly checks authenticity, expiry date, and registration status.</p>
           <div className="h-ctas">
             <button className="btn btn-p" onClick={()=>navigate("verify")}>Verify Medicine <Ic.ArrowR/></button>
             <button className="btn btn-o" onClick={()=>navigate("about")}>How It Works</button>
@@ -1092,7 +1069,7 @@ function HomePage({ navigate }) {
         <div className="hf-lbl">Three verdicts. Instant results.</div>
         <div className="hf-grid">
           {[
-            {ic:<Ic.Camera s={23}/>,cls:"fi-b",t:"Image Scan",d:"Upload a photo of the medicine's back label. AI reads batch numbers, expiry dates, and registration codes automatically.",pg:"verify"},
+            {ic:<Ic.Camera s={23}/>,cls:"fi-b",t:"Image Scan",d:"Upload a photo of the medicine's back label. Claude AI reads batch numbers, expiry dates, and registration codes automatically.",pg:"verify"},
             {ic:<Ic.Code s={23}/>,  cls:"fi-p",t:"Code Verification",d:"Enter the registration or batch code manually for instant AI-powered verification and authenticity analysis.",pg:"verify"},
             {ic:<Ic.History/>,      cls:"fi-g",t:"Scan History",d:"Every verification is saved locally. Track all medicines you've checked with filters, stats, and detailed results.",pg:"history"},
           ].map(({ic,cls,t,d,pg})=>(
