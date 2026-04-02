@@ -209,6 +209,32 @@ const S = `
   .mode-chk{position:absolute;top:9px;right:9px;width:19px;height:19px;border-radius:50%;background:var(--accent);color:var(--bg);display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(0.3);transition:all 0.2s}
   .mode-card.sel .mode-chk{opacity:1;transform:scale(1)}
 
+  /* SCAN BUTTONS */
+  .scan-btns-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+  .scan-btn-card{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:22px 16px;cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;transition:all 0.25s}
+  .scan-btn-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(56,189,248,0.12)}
+  .scan-btn-card:active{transform:scale(0.97)}
+  .upload-card:hover{border-color:var(--a2)!important}
+  .scan-btn-icon{width:56px;height:56px;border-radius:14px;background:rgba(56,189,248,0.1);color:var(--accent);display:flex;align-items:center;justify-content:center;transition:all 0.25s}
+  .scan-upload-icon{background:rgba(129,140,248,0.1);color:var(--a2)}
+  .scan-btn-card:hover .scan-btn-icon{background:rgba(56,189,248,0.18)}
+  .upload-card:hover .scan-upload-icon{background:rgba(129,140,248,0.18)}
+  .scan-btn-title{font-family:var(--fd);font-weight:700;font-size:0.9rem}
+  .scan-btn-desc{font-size:0.72rem;color:var(--muted);font-weight:300}
+
+  /* SCAN BUTTONS */
+  .scan-btns-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+  .scan-btn-card{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:22px 16px;cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;transition:all 0.25s}
+  .scan-btn-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(56,189,248,0.12)}
+  .scan-btn-card:active{transform:scale(0.97)}
+  .upload-card:hover{border-color:var(--a2)!important}
+  .scan-btn-icon{width:56px;height:56px;border-radius:14px;background:rgba(56,189,248,0.1);color:var(--accent);display:flex;align-items:center;justify-content:center;transition:all 0.25s}
+  .scan-upload-icon{background:rgba(129,140,248,0.1);color:var(--a2)}
+  .scan-btn-card:hover .scan-btn-icon{background:rgba(56,189,248,0.18)}
+  .upload-card:hover .scan-upload-icon{background:rgba(129,140,248,0.18)}
+  .scan-btn-title{font-family:var(--fd);font-weight:700;font-size:0.9rem}
+  .scan-btn-desc{font-size:0.72rem;color:var(--muted);font-weight:300}
+
   /* UPLOAD */
   .upload-zone{border:2px dashed var(--border);border-radius:var(--rl);padding:44px 26px;text-align:center;transition:all 0.25s;cursor:pointer;background:var(--surface);margin-bottom:18px;position:relative;overflow:hidden}
   .upload-zone::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(56,189,248,0.04),transparent 70%);opacity:0;transition:opacity 0.25s}
@@ -483,7 +509,7 @@ const S = `
     .tech-grid{grid-template-columns:1fr 1fr}
     .container,.container-lg,.result-wrap{padding:100px 18px 60px}
     .about-hero{padding:105px 18px 60px}
-    .mode-grid,.det-grid,.res-btns,.inp-row{grid-template-columns:1fr}
+    .det-grid,.res-btns,.inp-row{grid-template-columns:1fr}
     .stats-row{grid-template-columns:1fr 1fr}
     .cta-band{margin:0 18px 60px;padding:32px 22px}
     .h-item{flex-wrap:wrap}
