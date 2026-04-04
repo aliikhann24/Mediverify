@@ -457,7 +457,7 @@ const S = `
   .h-eye::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);animation:blink 2s infinite}
   @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
   .h-title{font-family:var(--fd);font-size:clamp(2.3rem,4vw,3.5rem);font-weight:800;line-height:1.06;letter-spacing:-0.03em;margin-bottom:16px}
-  .h-title .hi{color:##00FF7F}
+  .h-title .hi{color:#00FF7F}
   .h-title .wc{color:var(--accent)}
   .h-title .ex{color:#b91c1c}
   .h-desc{font-size:0.97rem;line-height:1.72;color:var(--muted);margin-bottom:28px;font-weight:300}
