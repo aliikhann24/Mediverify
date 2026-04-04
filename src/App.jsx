@@ -459,7 +459,7 @@ const S = `
   .h-title{font-family:var(--fd);font-size:clamp(2.3rem,4vw,3.5rem);font-weight:800;line-height:1.06;letter-spacing:-0.03em;margin-bottom:16px}
   .h-title .hi{color:var(--a3)}
   .h-title .wc{color:var(--accent)}
-  .h-title .ex{color:var(--danger)}
+  .h-title .ex{color:#b91c1c}
   .h-desc{font-size:0.97rem;line-height:1.72;color:var(--muted);margin-bottom:28px;font-weight:300}
   .h-ctas{display:flex;gap:11px;flex-wrap:wrap}
   .med-demo{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:24px;position:relative;overflow:hidden;transition:border-color 0.3s}
