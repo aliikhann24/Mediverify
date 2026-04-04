@@ -222,19 +222,6 @@ const S = `
   .scan-btn-title{font-family:var(--fd);font-weight:700;font-size:0.9rem}
   .scan-btn-desc{font-size:0.72rem;color:var(--muted);font-weight:300}
 
-  /* SCAN BUTTONS */
-  .scan-btns-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-  .scan-btn-card{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:22px 16px;cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;transition:all 0.25s}
-  .scan-btn-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(56,189,248,0.12)}
-  .scan-btn-card:active{transform:scale(0.97)}
-  .upload-card:hover{border-color:var(--a2)!important}
-  .scan-btn-icon{width:56px;height:56px;border-radius:14px;background:rgba(56,189,248,0.1);color:var(--accent);display:flex;align-items:center;justify-content:center;transition:all 0.25s}
-  .scan-upload-icon{background:rgba(129,140,248,0.1);color:var(--a2)}
-  .scan-btn-card:hover .scan-btn-icon{background:rgba(56,189,248,0.18)}
-  .upload-card:hover .scan-upload-icon{background:rgba(129,140,248,0.18)}
-  .scan-btn-title{font-family:var(--fd);font-weight:700;font-size:0.9rem}
-  .scan-btn-desc{font-size:0.72rem;color:var(--muted);font-weight:300}
-
   /* UPLOAD */
   .upload-zone{border:2px dashed var(--border);border-radius:var(--rl);padding:44px 26px;text-align:center;transition:all 0.25s;cursor:pointer;background:var(--surface);margin-bottom:18px;position:relative;overflow:hidden}
   .upload-zone::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(56,189,248,0.04),transparent 70%);opacity:0;transition:opacity 0.25s}
@@ -470,7 +457,7 @@ const S = `
   .h-eye::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);animation:blink 2s infinite}
   @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
   .h-title{font-family:var(--fd);font-size:clamp(2.3rem,4vw,3.5rem);font-weight:800;line-height:1.06;letter-spacing:-0.03em;margin-bottom:16px}
-  .h-title .hi{color:var(--accent)}
+  .h-title .hi{color:var(--a3)}
   .h-title .wc{color:var(--warn)}
   .h-title .ex{color:var(--danger)}
   .h-desc{font-size:0.97rem;line-height:1.72;color:var(--muted);margin-bottom:28px;font-weight:300}
