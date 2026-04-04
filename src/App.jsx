@@ -479,9 +479,9 @@ const S = `
   .h-eye::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);animation:blink 2s infinite}
   @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
   .h-title{font-family:var(--fd);font-size:clamp(2.3rem,4vw,3.5rem);font-weight:800;line-height:1.06;letter-spacing:-0.03em;margin-bottom:16px}
-  .h-title .hi{color:var(--a3)}
+  .h-title .hi{color:#4ade80} 
   .h-title .wc{color:var(--accent)}
-  .h-title .ex{color:var(--danger)}
+  .h-title .ex{color:#ff2d2d}  
   .h-desc{font-size:0.97rem;line-height:1.72;color:var(--muted);margin-bottom:28px;font-weight:300}
   .h-ctas{display:flex;gap:11px;flex-wrap:wrap}
   .med-demo{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:24px;position:relative;overflow:hidden;transition:border-color 0.3s}
