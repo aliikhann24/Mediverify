@@ -305,7 +305,7 @@ const S = `
   .v-title{font-family:var(--fd);font-weight:800;font-size:clamp(1.6rem,3vw,2.5rem);letter-spacing:-0.03em;margin-bottom:9px;animation:fadeUp 0.4s 0.18s ease forwards;opacity:0}
   .v-hero.legit   .v-title{color:var(--a3)}
   .v-hero.fake    .v-title{color:var(--danger)}
-  .v-hero.expired .v-title{color:var(--warn)}
+  .v-hero.expired .v-title{color:#b91c1c}
   .v-desc{font-size:0.88rem;color:var(--muted);font-weight:300;line-height:1.7;max-width:480px;margin:0 auto;animation:fadeUp 0.4s 0.26s ease forwards;opacity:0}
   .conf-wrap{margin-top:24px;animation:fadeUp 0.4s 0.34s ease forwards;opacity:0}
   .conf-row{display:flex;justify-content:space-between;font-size:0.72rem;color:var(--muted);margin-bottom:6px}
