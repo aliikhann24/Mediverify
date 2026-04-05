@@ -479,9 +479,9 @@ const S = `
   .h-eye::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);animation:blink 2s infinite}
   @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
   .h-title{font-family:var(--fd);font-size:clamp(2.3rem,4vw,3.5rem);font-weight:800;line-height:1.06;letter-spacing:-0.03em;margin-bottom:16px}
-  .h-title .hi{color:var(--a3)}
+  .h-title .hi{color:#4ade80} 
   .h-title .wc{color:var(--accent)}
-  .h-title .ex{color:var(--danger)}
+  .h-title .ex{color:#ff2d2d}  
   .h-desc{font-size:0.97rem;line-height:1.72;color:var(--muted);margin-bottom:28px;font-weight:300}
   .h-ctas{display:flex;gap:11px;flex-wrap:wrap}
   .med-demo{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:24px;position:relative;overflow:hidden;transition:border-color 0.3s}
@@ -520,10 +520,6 @@ const S = `
     .cta-band{margin:0 18px 60px;padding:32px 22px}
     .h-item{flex-wrap:wrap}
     .sa-left,.sa-right{transform:translateY(30px)}
-    [style*="grid-template-columns: repeat(3"]{grid-template-columns:1fr!important}
-    [style*="repeat(3,1fr)"]{grid-template-columns:1fr!important}
-    [style*="repeat(2,1fr)"]{grid-template-columns:1fr!important}
-    [style*="1fr 1fr"]:not(.mode-grid):not(.scan-btns-row):not(.det-grid):not(.res-btns):not(.inp-row):not(.stats-row){grid-template-columns:1fr!important}
   }
 `;
 
@@ -948,55 +944,6 @@ function VerifyPage({ navigate, toast }) {
             {ready && !loading && <div className="btn-hint">🤖 Powered by Claude AI · Results in ~10 seconds</div>}
           </div>
         )}
-
-        {/* WHAT HAPPENS NEXT */}
-        <div style={{marginTop:48,paddingTop:40,borderTop:"1px solid var(--border)"}}>
-          <div className="sa sa-up" style={{marginBottom:28}}>
-            <div style={{fontSize:"0.7rem",fontWeight:600,letterSpacing:"0.1em",textTransform:"uppercase",color:"var(--accent)",marginBottom:6}}>After Analysis</div>
-            <h3 style={{fontFamily:"var(--fd)",fontWeight:700,fontSize:"1.1rem",marginBottom:4}}>What You'll Receive</h3>
-            <p style={{fontSize:"0.82rem",color:"var(--muted)",fontWeight:300,lineHeight:1.6}}>Every scan gives you a complete verification report with the following details.</p>
-          </div>
-          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12}}>
-            {[
-              {icon:"🎯",title:"Confidence Score",desc:"AI confidence percentage showing how certain the analysis is",dir:"sa-left sd-1"},
-              {icon:"💊",title:"Medicine Details",desc:"Name, manufacturer, batch number, registration and expiry date",dir:"sa-right sd-2"},
-              {icon:"✅",title:"5 Verification Checks",desc:"Registration, batch format, expiry, manufacturer and packaging checks",dir:"sa-left sd-3"},
-              {icon:"📋",title:"Recommendation",desc:"Clear advice on whether to use, discard or report the medicine",dir:"sa-right sd-4"},
-            ].map(({icon,title,desc,dir})=>(
-              <div key={title} className={`sa ${dir}`} style={{background:"var(--surface)",border:"1px solid var(--border)",borderRadius:"var(--rs)",padding:"16px",display:"flex",gap:12,alignItems:"flex-start"}}>
-                <span style={{fontSize:"1.3rem",flexShrink:0}}>{icon}</span>
-                <div>
-                  <div style={{fontFamily:"var(--fd)",fontWeight:700,fontSize:"0.84rem",marginBottom:3}}>{title}</div>
-                  <div style={{fontSize:"0.74rem",color:"var(--muted)",fontWeight:300,lineHeight:1.5}}>{desc}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* QUICK FAQ */}
-        <div style={{marginTop:40,paddingTop:36,borderTop:"1px solid var(--border)"}}>
-          <div className="sa sa-up" style={{marginBottom:20}}>
-            <h3 style={{fontFamily:"var(--fd)",fontWeight:700,fontSize:"1.1rem"}}>Common Questions</h3>
-          </div>
-          {[
-            {q:"Which side of the medicine box should I photograph?",a:"Always photograph the back label where you can see the batch number, expiry date, registration number, and manufacturer name. The more text visible, the more accurate the analysis."},
-            {q:"Does the image need to be perfectly clear?",a:"Good lighting and no blur gives the best results. The AI can handle slightly angled photos but extremely blurry or dark images may result in lower confidence scores."},
-            {q:"Can I verify medicines from outside Pakistan?",a:"Yes! MediVerify works with medicine packaging from any country. The AI identifies the relevant registration authority and code format automatically."},
-            {q:"Is the result 100% guaranteed?",a:"MediVerify uses AI pattern analysis and is not connected to DRAP's official database. Results should be used as a helpful indicator — always consult a pharmacist for critical decisions."},
-          ].map(({q,a},i)=>{
-            const [open,setOpen]=React.useState(false);
-            return (
-              <div key={i} className="sa sa-up" style={{borderBottom:"1px solid var(--border)"}}>
-                <div onClick={()=>setOpen(o=>!o)} style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"14px 4px",cursor:"pointer",fontFamily:"var(--fd)",fontWeight:600,fontSize:"0.87rem",gap:11,userSelect:"none",transition:"color 0.2s",color:open?"var(--accent)":"var(--text)"}}>
-                  {q}<span style={{color:"var(--muted)",transition:"transform 0.25s",transform:open?"rotate(90deg)":"none",display:"inline-block"}}><Ic.ChevR/></span>
-                </div>
-                <div style={{fontSize:"0.8rem",color:"var(--muted)",fontWeight:300,lineHeight:1.7,padding:"0 4px",maxHeight:open?200:0,overflow:"hidden",transition:"max-height 0.3s ease,opacity 0.3s,padding 0.3s",opacity:open?1:0,paddingBottom:open?14:0}}>{a}</div>
-              </div>
-            );
-          })}
-        </div>
-
       </div>
     </>
   );
@@ -1143,89 +1090,6 @@ function HomePage({ navigate }) {
           ))}
         </div>
       </div>
-
-      {/* STATS SECTION */}
-      <div style={{padding:"0 48px 80px",maxWidth:1100,margin:"0 auto",position:"relative",zIndex:1}}>
-        <div className="sa sa-up" style={{textAlign:"center",marginBottom:48}}>
-          <div style={{fontSize:"0.7rem",fontWeight:600,letterSpacing:"0.1em",textTransform:"uppercase",color:"var(--accent)",marginBottom:8}}>Impact</div>
-          <h2 style={{fontFamily:"var(--fd)",fontWeight:800,fontSize:"clamp(1.6rem,3vw,2.2rem)",letterSpacing:"-0.03em",marginBottom:10}}>Why Medicine Verification Matters</h2>
-          <p style={{color:"var(--muted)",fontWeight:300,maxWidth:520,margin:"0 auto",fontSize:"0.92rem",lineHeight:1.65}}>The counterfeit medicine crisis is a silent epidemic affecting millions of people worldwide every year.</p>
-        </div>
-        <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:20}}>
-          {[
-            {num:"1 in 10",label:"Medical products in developing countries are substandard or falsified",color:"var(--danger)",icon:"⚠️"},
-            {num:"100,000+",label:"Deaths annually linked to counterfeit medicines in Africa alone",color:"var(--warn)",icon:"💊"},
-            {num:"10 sec",label:"Is all it takes for MediVerify to analyze and verify your medicine",color:"var(--a3)",icon:"⚡"},
-          ].map(({num,label,color,icon},i)=>(
-            <div key={i} className={`sa sa-up sd-${i+1}`} style={{background:"var(--surface)",border:"1px solid var(--border)",borderRadius:"var(--r)",padding:"28px 24px",textAlign:"center"}}>
-              <div style={{fontSize:"2rem",marginBottom:12}}>{icon}</div>
-              <div style={{fontFamily:"var(--fd)",fontWeight:800,fontSize:"clamp(1.8rem,3vw,2.4rem)",color,letterSpacing:"-0.03em",marginBottom:8}}>{num}</div>
-              <div style={{fontSize:"0.82rem",color:"var(--muted)",fontWeight:300,lineHeight:1.6}}>{label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* USE CASES */}
-      <div style={{padding:"0 48px 80px",maxWidth:1100,margin:"0 auto",position:"relative",zIndex:1}}>
-        <div style={{textAlign:"center",marginBottom:40}} className="sa sa-up">
-          <div style={{fontSize:"0.7rem",fontWeight:600,letterSpacing:"0.1em",textTransform:"uppercase",color:"var(--accent)",marginBottom:8}}>Who Uses MediVerify</div>
-          <h2 style={{fontFamily:"var(--fd)",fontWeight:800,fontSize:"clamp(1.4rem,2.5vw,1.9rem)",letterSpacing:"-0.03em",marginBottom:10}}>Built for Everyone</h2>
-          <p style={{color:"var(--muted)",fontWeight:300,maxWidth:480,margin:"0 auto",fontSize:"0.9rem",lineHeight:1.65}}>From patients at home to healthcare professionals — MediVerify protects everyone.</p>
-        </div>
-        <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:16}}>
-          {[
-            {icon:"🏠",title:"Home Users",desc:"Verify medicines purchased from pharmacies or online before consuming. Protect your family from counterfeit and expired drugs with a simple photo scan.",color:"var(--a3)",dir:"sa-left sd-1"},
-            {icon:"🏥",title:"Healthcare Professionals",desc:"Quickly verify patient medications during consultations. Cross-check batch numbers and registration codes to ensure medicine authenticity.",color:"var(--accent)",dir:"sa-right sd-2"},
-            {icon:"💊",title:"Pharmacists",desc:"Screen medicines before dispensing to customers. Identify suspicious packaging or expired stock before it reaches patients.",color:"var(--a2)",dir:"sa-left sd-3"},
-            {icon:"🎓",title:"Students & Researchers",desc:"Study AI-powered pharmaceutical verification technology. Explore how machine learning can improve public health and medicine safety.",color:"var(--warn)",dir:"sa-right sd-4"},
-          ].map(({icon,title,desc,color,dir})=>(
-            <div key={title} className={`sa ${dir}`} style={{background:"var(--surface)",border:"1px solid var(--border)",borderRadius:"var(--r)",padding:"28px",display:"flex",gap:18,alignItems:"flex-start"}}>
-              <div style={{width:52,height:52,borderRadius:13,background:"var(--s2)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"1.5rem",flexShrink:0}}>{icon}</div>
-              <div>
-                <div style={{fontFamily:"var(--fd)",fontWeight:700,fontSize:"0.95rem",marginBottom:6,color}}>{title}</div>
-                <div style={{fontSize:"0.8rem",color:"var(--muted)",fontWeight:300,lineHeight:1.6}}>{desc}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* VERDICTS EXPLAINER */}
-      <div style={{padding:"0 48px 80px",maxWidth:1100,margin:"0 auto",position:"relative",zIndex:1}}>
-        <div style={{textAlign:"center",marginBottom:40}} className="sa sa-up">
-          <div style={{fontSize:"0.7rem",fontWeight:600,letterSpacing:"0.1em",textTransform:"uppercase",color:"var(--accent)",marginBottom:8}}>Results</div>
-          <h2 style={{fontFamily:"var(--fd)",fontWeight:800,fontSize:"clamp(1.4rem,2.5vw,1.9rem)",letterSpacing:"-0.03em"}}>Understanding Your Verdict</h2>
-        </div>
-        <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:16}}>
-          {[
-            {verdict:"✅ Legitimate",color:"var(--a3)",bg:"rgba(52,211,153,0.06)",border:"rgba(52,211,153,0.2)",desc:"The medicine passed all verification checks. It appears to be registered, authentic, and within its expiry date. Safe to use as prescribed.",action:"Continue as directed by your doctor or pharmacist.",dir:"sa-left sd-1"},
-            {verdict:"❌ Fake",color:"var(--danger)",bg:"rgba(248,113,113,0.06)",border:"rgba(248,113,113,0.2)",desc:"The medicine shows signs of being counterfeit or unregistered. The packaging, codes, or details do not match expected patterns.",action:"Do not consume. Report to your pharmacist or DRAP immediately.",dir:"sa-up sd-2"},
-            {verdict:"⚠️ Expired",color:"var(--warn)",bg:"rgba(251,191,36,0.06)",border:"rgba(251,191,36,0.2)",desc:"The medicine appears genuine but its expiry date has passed. Expired medicines may be ineffective or potentially harmful.",action:"Dispose safely. Do not consume expired medication.",dir:"sa-right sd-3"},
-          ].map(({verdict,color,bg,border,desc,action,dir})=>(
-            <div key={verdict} className={`sa ${dir}`} style={{background:bg,border:`1px solid ${border}`,borderRadius:"var(--r)",padding:"28px 24px"}}>
-              <div style={{fontFamily:"var(--fd)",fontWeight:800,fontSize:"1.1rem",color,marginBottom:12}}>{verdict}</div>
-              <div style={{fontSize:"0.8rem",color:"var(--muted)",fontWeight:300,lineHeight:1.65,marginBottom:14}}>{desc}</div>
-              <div style={{fontSize:"0.75rem",fontWeight:500,color,borderTop:`1px solid ${border}`,paddingTop:12}}>→ {action}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* CTA BOTTOM */}
-      <div style={{padding:"0 48px 100px",maxWidth:1100,margin:"0 auto",position:"relative",zIndex:1}}>
-        <div className="sa sa-scale" style={{background:"linear-gradient(135deg,rgba(56,189,248,0.06),rgba(129,140,248,0.06))",border:"1px solid var(--border2)",borderRadius:"var(--rl)",padding:"60px 44px",textAlign:"center",position:"relative",overflow:"hidden"}}>
-          <div style={{position:"absolute",top:0,left:0,right:0,height:2,background:"linear-gradient(90deg,var(--a3),var(--accent),var(--a2))"}}/>
-          <div style={{fontSize:"0.7rem",fontWeight:600,letterSpacing:"0.1em",textTransform:"uppercase",color:"var(--accent)",marginBottom:12}}>Get Started Free</div>
-          <h2 style={{fontFamily:"var(--fd)",fontWeight:800,fontSize:"clamp(1.6rem,3vw,2.4rem)",letterSpacing:"-0.03em",marginBottom:12}}>Protect Your Family Today</h2>
-          <p style={{color:"var(--muted)",fontWeight:300,marginBottom:32,maxWidth:480,margin:"0 auto 32px",lineHeight:1.7}}>MediVerify is completely free to use. No registration required. Just open the app, scan or enter a code, and get your instant AI verdict.</p>
-          <div style={{display:"flex",justifyContent:"center",gap:12,flexWrap:"wrap"}}>
-            <button className="btn btn-p" onClick={()=>{window.location.hash="verify";}} style={{padding:"14px 32px",fontSize:"1rem"}}>Verify Medicine Now →</button>
-            <button className="btn btn-o" onClick={()=>{window.location.hash="about";}} style={{padding:"14px 24px"}}>Learn More</button>
-          </div>
-        </div>
-      </div>
-
     </div>
   );
 }
