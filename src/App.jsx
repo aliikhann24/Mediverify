@@ -965,9 +965,8 @@ function AboutPage({ navigate }) {
   return (
     <div className="about-wrap">
       <div className="about-hero">
-        <div className="a-eye sa sa-up">Final Year Project — Medicine Verification</div>
         <h1 className="a-title sa sa-up">Protecting Lives with <span>AI Intelligence</span></h1>
-        <p className="a-desc sa sa-up">MediVerify uses Claude AI's vision capabilities to instantly analyze medicine packaging, detect counterfeit drugs, and flag expired medications — making healthcare safer for everyone.</p>
+        <p className="a-desc sa sa-up">MediVerify uses Claude AI's vision capabilities to instantly analyze medicine packaging, detect counterfeit drugs, and flag expired medications making healthcare safer for everyone.</p>
         <div className="sa sa-up" style={{display:"flex",justifyContent:"center",gap:11,flexWrap:"wrap"}}>
           <button className="btn btn-p" onClick={()=>navigate("verify")}>Try It Now <Ic.ArrowR/></button>
           <button className="btn btn-o" onClick={()=>navigate("history")}>View History</button>
@@ -1036,7 +1035,7 @@ function AboutPage({ navigate }) {
       </div>
       <div className="cta-band sa sa-scale">
         <h2>Ready to verify your medicine?</h2>
-        <p>Upload/Scan a photo or enter a code — get your AI verdict in seconds.</p>
+        <p>Upload/Scan a photo or enter a code get your AI verdict in seconds.</p>
         <div style={{display:"flex",justifyContent:"center",gap:11,flexWrap:"wrap"}}>
           <button className="btn btn-p" onClick={()=>navigate("verify")}>Start Verifying <Ic.ArrowR/></button>
           <button className="btn btn-o" onClick={()=>navigate("history")}>View History</button>
