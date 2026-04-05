@@ -946,7 +946,7 @@ function HistoryPage({ navigate, toast }) {
       <div style={{marginTop:32,background:"linear-gradient(135deg,rgba(56,189,248,0.05),rgba(129,140,248,0.05))",border:"1px solid var(--border2)",borderRadius:"var(--rl)",padding:"32px",textAlign:"center",position:"relative",overflow:"hidden"}} className="sa sa-scale">
         <div style={{position:"absolute",top:0,left:0,right:0,height:2,background:"linear-gradient(90deg,var(--accent),var(--a2))"}}/>
         <h3 style={{fontFamily:"var(--fd)",fontWeight:700,fontSize:"1.1rem",marginBottom:8}}>Verify Another Medicine</h3>
-        <p style={{fontSize:"0.82rem",color:"var(--muted)",fontWeight:300,marginBottom:20,lineHeight:1.6}}>Keep your family safe — verify every medicine before consuming. It only takes 10 seconds.</p>
+        <p style={{fontSize:"0.82rem",color:"var(--muted)",fontWeight:300,marginBottom:20,lineHeight:1.6}}>Keep your family safe verify every medicine before consuming. It only takes 10 seconds.</p>
         <button className="btn btn-p" onClick={()=>navigate("verify")} style={{padding:"12px 28px"}}>Start New Verification <Ic.ArrowR/></button>
       </div>
 
@@ -983,7 +983,7 @@ function VerifyPage({ navigate, toast }) {
       {loading && <LoadingOverlay mode={mode}/>}
       <div className="container">
         <h1 className="page-title sa sa-up">Verify Medicine</h1>
-        <p className="page-sub sa sa-up">Upload a photo of the back label or enter the registration code to get an instant AI verdict.</p>
+        <p className="page-sub sa sa-up">Upload/Scan a photo of the back label or enter the registration code to get an instant AI verdict.</p>
         <div className="steps sa sa-up">
           {[{n:1,l:"Choose method"},{n:2,l:"Provide details"},{n:3,l:"Analyze"}].map(({n,l},i) => (
             <div key={n} style={{display:"flex",alignItems:"center",flex:i<2?"1":"unset"}}>
@@ -1080,9 +1080,8 @@ function AboutPage({ navigate }) {
   return (
     <div className="about-wrap">
       <div className="about-hero">
-        <div className="a-eye sa sa-up">Final Year Project — Medicine Verification</div>
         <h1 className="a-title sa sa-up">Protecting Lives with <span>AI Intelligence</span></h1>
-        <p className="a-desc sa sa-up">MediVerify uses AI's vision capabilities to instantly analyze medicine packaging, detect counterfeit drugs, and flag expired medications — making healthcare safer for everyone.</p>
+        <p className="a-desc sa sa-up">MediVerify uses AI's vision capabilities to instantly analyze medicine packaging, detect counterfeit drugs, and flag expired medications making healthcare safer for everyone.</p>
         <div className="sa sa-up" style={{display:"flex",justifyContent:"center",gap:11,flexWrap:"wrap"}}>
           <button className="btn btn-p" onClick={()=>navigate("verify")}>Try It Now <Ic.ArrowR/></button>
           <button className="btn btn-o" onClick={()=>navigate("history")}>View History</button>
@@ -1176,7 +1175,7 @@ function AboutPage({ navigate }) {
       <div className="feat-sec" style={{paddingBottom:70}}>
         <div className="sec-eye sa sa-up">AI Technology</div>
         <h2 className="sec-title sa sa-up">Powered by Claude AI Vision</h2>
-        <p className="sec-desc sa sa-up">State-of-the-art vision AI reads medicine packaging the same way a human expert would — but in seconds.</p>
+        <p className="sec-desc sa sa-up">State-of-the-art vision AI reads medicine packaging the same way a human expert would but in seconds.</p>
         <div style={{background:"var(--surface)",border:"1px solid var(--border)",borderRadius:"var(--rl)",padding:"36px",position:"relative",overflow:"hidden"}} className="sa sa-scale">
           <div style={{position:"absolute",top:0,left:0,right:0,height:2,background:"linear-gradient(90deg,var(--accent),var(--a2),var(--a3))"}}/>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:24}}>
@@ -1231,7 +1230,7 @@ function AboutPage({ navigate }) {
 
       <div className="cta-band sa sa-scale">
         <h2>Ready to verify your medicine?</h2>
-        <p>Upload/Scan a photo or enter a code — get your AI verdict in seconds.</p>
+        <p>Upload/Scan a photo or enter a code get your AI verdict in seconds.</p>
         <div style={{display:"flex",justifyContent:"center",gap:11,flexWrap:"wrap"}}>
           <button className="btn btn-p" onClick={()=>navigate("verify")}>Start Verifying <Ic.ArrowR/></button>
           <button className="btn btn-o" onClick={()=>navigate("history")}>View History</button>
