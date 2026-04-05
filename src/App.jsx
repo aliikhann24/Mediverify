@@ -381,7 +381,6 @@ const S = `
   .rbtn.s{background:var(--surface);border:1px solid var(--border);color:var(--text)}.rbtn.s:hover{border-color:var(--accent);color:var(--accent)}
   .disclaimer{background:var(--s2);border:1px solid var(--border);border-radius:var(--rs);padding:12px 15px;font-size:0.71rem;color:var(--muted);line-height:1.6;font-weight:300;animation:fadeUp 0.4s 0.52s ease forwards;opacity:0}
   .disclaimer strong{color:var(--text);font-weight:500}
-  .ai-tag{display:inline-flex;align-items:center;gap:4px;background:rgba(129,140,248,0.07);border:1px solid rgba(129,140,248,0.17);border-radius:100px;padding:3px 10px;font-size:0.68rem;color:var(--a2);font-weight:600;margin-bottom:16px}
 
   /* HISTORY */
   .h-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;gap:14px;flex-wrap:wrap}
@@ -756,7 +755,6 @@ function ResultPage({ result, navigate, toast }) {
       <button onClick={()=>navigate("verify")} style={{display:"flex",alignItems:"center",gap:5,background:"none",border:"none",color:"var(--muted)",cursor:"pointer",fontFamily:"var(--fb)",fontSize:"0.8rem",marginBottom:22,padding:0,transition:"color 0.2s"}} onMouseOver={e=>e.currentTarget.style.color="var(--text)"} onMouseOut={e=>e.currentTarget.style.color="var(--muted)"}>
         <Ic.ArrowL/> Back to Verify
       </button>
-      <div className="ai-tag sa sa-up">🤖 Analyzed by Claude AI</div>
       <div className={`v-hero ${v} sa sa-scale`}>
         <div className="v-glow"/>
         <div className="v-ring">{cfg.icon}</div>
@@ -1017,9 +1015,9 @@ function VerifyPage({ navigate, toast }) {
         {mode && (
           <div style={{marginTop:8}} className="sa sa-up">
             <button className="btn btn-p btn-p-full" disabled={!ready||loading} onClick={submit}>
-              {loading?"Analyzing...":ready?<>Analyze with Claude AI <Ic.ArrowR/></>:"Complete the form above to continue"}
+              {loading?"Analyzing...":ready?<>Analyze Medicine <Ic.ArrowR/></>:"Complete the form above to continue"}
             </button>
-            {ready && !loading && <div className="btn-hint">🤖 Powered by Claude AI · Results in ~10 seconds</div>}
+            {ready && !loading && <div className="btn-hint">Results in ~10 seconds</div>}
           </div>
         )}
 
@@ -1084,7 +1082,7 @@ function AboutPage({ navigate }) {
       <div className="about-hero">
         <div className="a-eye sa sa-up">Final Year Project — Medicine Verification</div>
         <h1 className="a-title sa sa-up">Protecting Lives with <span>AI Intelligence</span></h1>
-        <p className="a-desc sa sa-up">MediVerify uses Claude AI's vision capabilities to instantly analyze medicine packaging, detect counterfeit drugs, and flag expired medications — making healthcare safer for everyone.</p>
+        <p className="a-desc sa sa-up">MediVerify uses AI's vision capabilities to instantly analyze medicine packaging, detect counterfeit drugs, and flag expired medications — making healthcare safer for everyone.</p>
         <div className="sa sa-up" style={{display:"flex",justifyContent:"center",gap:11,flexWrap:"wrap"}}>
           <button className="btn btn-p" onClick={()=>navigate("verify")}>Try It Now <Ic.ArrowR/></button>
           <button className="btn btn-o" onClick={()=>navigate("history")}>View History</button>
@@ -1096,7 +1094,7 @@ function AboutPage({ navigate }) {
         <p className="sec-desc sa sa-up">Four steps from medicine photo to verified result in under 10 seconds.</p>
         <div className="steps-vis">
           {[{n:1,c:"sc1",t:"Upload or Enter",d:"Upload/Scan a photo of the label or enter the batch/registration code manually",dir:"sa-up sd-1"},
-            {n:2,c:"sc2",t:"AI Reads Label",d:"Claude AI vision reads all text including batch numbers, dates, and registration codes",dir:"sa-up sd-2"},
+            {n:2,c:"sc2",t:"AI Reads Label",d:"AI vision reads all text including batch numbers, dates, and registration codes",dir:"sa-up sd-2"},
             {n:3,c:"sc3",t:"Cross-Analysis",d:"AI checks code formats, manufacturer details, and packaging consistency patterns",dir:"sa-up sd-3"},
             {n:4,c:"sc4",t:"Instant Verdict",d:"Get a clear Legit, Fake, or Expired result with detailed breakdown",dir:"sa-up sd-4"}
           ].map(({n,c,t,d,dir})=>(
@@ -1146,7 +1144,7 @@ function AboutPage({ navigate }) {
         <h2 className="sec-title sa sa-up">Technology Stack</h2>
         <p className="sec-desc sa sa-up">Modern technologies powering MediVerify.</p>
         <div className="tech-grid">
-          {[{e:"⚛️",n:"React 18",r:"Frontend UI",dir:"sd-1"},{e:"⚡",n:"Vite",r:"Build Tool",dir:"sd-2"},{e:"🤖",n:"Claude AI",r:"AI Engine",dir:"sd-3"},{e:"👁️",n:"Claude Vision",r:"Image OCR",dir:"sd-4"},{e:"💾",n:"localStorage",r:"History",dir:"sd-1"},{e:"🎨",n:"CSS Variables",r:"Design System",dir:"sd-2"},{e:"📦",n:"Zero Deps",r:"Vanilla JS",dir:"sd-3"},{e:"🚀",n:"Vercel",r:"Deployment",dir:"sd-4"}].map(({e,n,r,dir})=>(
+          {[{e:"⚛️",n:"React 18",r:"Frontend UI",dir:"sd-1"},{e:"⚡",n:"Vite",r:"Build Tool",dir:"sd-2"},{e:"🤖",n:"AI Engine",r:"Core Analysis",dir:"sd-3"},{e:"👁️",n:"Vision AI",r:"Image OCR",dir:"sd-4"},{e:"💾",n:"localStorage",r:"History",dir:"sd-1"},{e:"🎨",n:"CSS Variables",r:"Design System",dir:"sd-2"},{e:"📦",n:"Zero Deps",r:"Vanilla JS",dir:"sd-3"},{e:"🚀",n:"Vercel",r:"Deployment",dir:"sd-4"}].map(({e,n,r,dir})=>(
             <div key={n} className={`tech-card sa sa-up ${dir}`}><div className="tech-e">{e}</div><div className="tech-n">{n}</div><div className="tech-r">{r}</div></div>
           ))}
         </div>
